@@ -26,7 +26,7 @@ public class SplashActivity extends Activity implements Runnable {
         Handler handler = new Handler();
         handler.postDelayed(this, SPLASH_TIME_OUT);
 
-        ImageView image = (ImageView)findViewById(R.id.imageview);
+        ImageView image = (ImageView)findViewById(R.id.imageView);
 
         AlphaAnimation animation = new AlphaAnimation(0.2f, 1.0f);
         animation.setDuration(500);
