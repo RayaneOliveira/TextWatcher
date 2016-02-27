@@ -15,18 +15,22 @@ public class Response {
     }
 
     public int getStatusCodeHttp() {
+
         return statusCodeHttp;
     }
 
     public void setStatusCodeHttp(int statusCodeHttp) {
+
         this.statusCodeHttp = statusCodeHttp;
     }
 
     public String getContentValue() {
+
         return contentValue;
     }
 
     public void setContentValue(String contentValue) {
+
         this.contentValue = contentValue;
     }
 }

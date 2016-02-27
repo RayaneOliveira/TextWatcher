@@ -1,9 +1,5 @@
 package ifpb.edu.br.textwatcher.activity;
 
-/**
- * Created by Rayane on 26/02/2016.
- */
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -34,11 +30,9 @@ public class BuscarNomeActivity extends Activity implements TextWatcher {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        // Inicialização da activity e definição do layout.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buscar_nome);
 
-        // Recuperando o EditText e
         nomeEditText = (EditText) findViewById(R.id.nomeEditText);
         nomeEditText.addTextChangedListener(this);
 
@@ -54,7 +48,7 @@ public class BuscarNomeActivity extends Activity implements TextWatcher {
     @Override
     public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) {
 
-        Log.i("EditTextListener","beforeTextChanged: " + charSequence);
+        Log.i("EditTextListener", "beforeTextChanged: " + charSequence);
     }
 
     @Override
@@ -63,18 +57,15 @@ public class BuscarNomeActivity extends Activity implements TextWatcher {
         Log.i("EditTextListener", "onTextChanged: " + charSequence);
         String nome = charSequence.toString();
 
-        // Consultar o servidor. Criar o JSONObject e uma AsyncTask<JSONObject, Void, Response>
         try {
 
             if (nome.length() >= TAMANHO_MINIMO_TEXTO) {
-                // JSON
+
                 JSONObject json = new JSONObject();
                 json.put("fullName", nome);
 
-                BuscarNomeAsyncTask buscarNomeAsyncTask = new BuscarNomeAsyncTask();
+                BuscarNomeAsyncTask buscarNomeAsyncTask = new BuscarNomeAsyncTask(this);
                 buscarNomeAsyncTask.execute(json);
-
-                // Adicionar ao ListView.
                 nomes.add(nome);
                 adapter.notifyDataSetChanged();
             }
@@ -89,5 +80,11 @@ public class BuscarNomeActivity extends Activity implements TextWatcher {
     public void afterTextChanged(Editable editable) {
 
         Log.i("EditTextListener","afterTextChanged: " + editable);
+    }
+
+    public void buscarNome(List<String> nomes) {
+        nomes.clear();
+        this.nomes.addAll(nomes);
+        adapter.notifyDataSetChanged();
     }
 }

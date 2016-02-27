@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TextWatcher</string>
+    <string name="activity_splash">SplashActivity</string>
 </resources>
